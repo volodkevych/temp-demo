@@ -8,7 +8,7 @@ phases:
   
   build:
     commands:
-      - echo "Post-build phase..."
+      - echo "Build phase..."
       - git remote -v
       - cd ..
       - mkdir basic_git_sample
