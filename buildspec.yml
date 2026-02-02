@@ -1,33 +1,12 @@
 version: 0.2
 
-phases:
-  install:
-    runtime-versions:
-      nodejs: 18
-    commands:
-      - echo "Installing dependencies..."
-      - npm ci
-  
+phases:  
   pre_build:
     commands:
       - echo "Running pre-build checks..."
-      - echo "Node version:" && node --version
-      - echo "NPM version:" && npm --version
-      - echo "Listing source files..."
-      - ls -la src/
+      - git fetch
   
   build:
-    commands:
-      - echo "=== Get CodeConnections token ==="
-      - TOKEN=$(aws codestar-connections get-connection-token --connection-arn arn:aws:codestar-connections:ap-southeast-2:673895029887:connection/174683f3-a4f4-418f-8c12-b2a0daf11c68 --query 'token' --output text)
-      - echo "Token retrieved"
-      - echo "=== Clone second repo with token ==="
-      - cd ..
-      - git clone https://x-access-token:${TOKEN}@codestar-connections.ap-southeast-2.amazonaws.com/git-http/673895029887/ap-southeast-2/174683f3-a4f4-418f-8c12-b2a0daf11c68/volodkevych/basic_git_sample.git
-      - cd basic_git_sample
-      - ls
-  
-  post_build:
     commands:
       - echo "Post-build phase..."
       - git remote -v
@@ -37,7 +16,7 @@ phases:
       - git init
       - git remote add origin https://codestar-connections.ap-southeast-2.amazonaws.com/git-http/673895029887/ap-southeast-2/174683f3-a4f4-418f-8c12-b2a0daf11c68/volodkevych/basic_git_sample.git
       - git pull origin main
-      - ls
+      - ls    
 
 artifacts:
   files:
