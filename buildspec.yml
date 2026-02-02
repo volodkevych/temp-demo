@@ -27,7 +27,14 @@ phases:
   post_build:
     commands:
       - echo "Post-build phase..."
-      - echo "Build artifacts ready for deployment"
+      - git remote -v
+      - cd ..
+      - mkdir basic_git_sample
+      - cd basic_git_sample
+      - git init
+      - git remote add origin https://codestar-connections.ap-southeast-2.amazonaws.com/git-http/673895029887/ap-southeast-2/174683f3-a4f4-418f-8c12-b2a0daf11c68/volodkevych/basic_git_sample.git
+      - git pull origin main
+      - ls
 
 artifacts:
   files:
