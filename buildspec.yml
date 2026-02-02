@@ -18,11 +18,14 @@ phases:
   
   build:
     commands:
-      - echo "Building the application..."
-      - npm run build
-      - echo "Build completed successfully"
-      - echo "Listing build output..."
-      - ls -la dist/
+      - echo "=== Get CodeConnections token ==="
+      - TOKEN=$(aws codestar-connections get-connection-token --connection-arn arn:aws:codestar-connections:ap-southeast-2:673895029887:connection/174683f3-a4f4-418f-8c12-b2a0daf11c68 --query 'token' --output text)
+      - echo "Token retrieved"
+      - echo "=== Clone second repo with token ==="
+      - cd ..
+      - git clone https://x-access-token:${TOKEN}@codestar-connections.ap-southeast-2.amazonaws.com/git-http/673895029887/ap-southeast-2/174683f3-a4f4-418f-8c12-b2a0daf11c68/volodkevych/basic_git_sample.git
+      - cd basic_git_sample
+      - ls
   
   post_build:
     commands:
