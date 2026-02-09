@@ -23,6 +23,7 @@ phases:
       - echo "Build completed successfully"
       - echo "Listing build output..."
       - ls -la dist/
+    on-failure: ABORT
   
   post_build:
     commands:
