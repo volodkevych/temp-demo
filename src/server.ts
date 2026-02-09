@@ -1,8 +1,6 @@
 import express from 'express';
 import path from 'path';
 
-const invalidCode: number = "number_here";
-
 const app = express();
 const PORT = process.env.PORT || 8080;
 
