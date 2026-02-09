@@ -8,27 +8,11 @@ phases:
       - echo "Installing dependencies..."
       - npm ci
   
-  pre_build:
-    commands:
-      - echo "Running pre-build checks..."
-      - echo "Node version:" && node --version
-      - echo "NPM version:" && npm --version
-      - echo "Listing source files..."
-      - ls -la src/
-  
   build:
     commands:
-      - echo "Building the application..."
+      - echo "Building application..."
       - npm run build
-      - echo "Build completed successfully"
-      - echo "Listing build output..."
-      - ls -la dist/
     on-failure: ABORT
-  
-  post_build:
-    commands:
-      - echo "Post-build phase..."
-      - echo "Build artifacts ready for deployment"
 
 artifacts:
   files:
