@@ -31,8 +31,10 @@ phases:
 
 artifacts:
   files:
-    - '**/*'
-  base-directory: 'dist'
+    - 'dist/**/*'
+    - 'node_modules/**/*'
+    - 'package.json'
+    - 'package-lock.json'
   name: temp-demo-build-$(date +%Y-%m-%d-%H-%M-%S)
 
 cache:
