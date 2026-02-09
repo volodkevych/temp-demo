@@ -93,3 +93,4 @@ temp/
 ehthumbs.db
 Thumbs.db
 node_modules
+*.ini
