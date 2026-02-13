@@ -1,6 +1,6 @@
 # temp-demo
 
-A minimal React TypeScript website that displays "Welcome to CodePipeline!". Used for internal testing.
+A minimal React TypeScript website that displays "Welcome to CodePipeline!" or similar. Used for internal testing.
 
 ## Project Structure
 
