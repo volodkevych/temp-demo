@@ -10,7 +10,7 @@ phases:
   
   build:
     commands:
-      - echo "Now, building application..."
+      - echo "And now, building application..."
       - npm run build
     on-failure: ABORT
 
