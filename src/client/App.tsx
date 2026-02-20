@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 
 const App: React.FC = () => {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState(() => 
+    Array.from({ length: 50 }, () => Math.floor(Math.random() * 1000) + 1).join(', ')
+  );
   const [algorithm, setAlgorithm] = useState('bubble');
   const [result, setResult] = useState<number[]>([]);
+  const [sortTime, setSortTime] = useState<number | null>(null);
 
   const bubbleSort = (arr: number[]) => {
     const sorted = [...arr];
@@ -44,12 +47,14 @@ const App: React.FC = () => {
     const numbers = input.split(',').map(n => parseInt(n.trim())).filter(n => !isNaN(n));
     let sorted: number[] = [];
     
+    const start = performance.now();
     if (algorithm === 'bubble') sorted = bubbleSort(numbers);
     else if (algorithm === 'quick') sorted = quickSort(numbers);
     else if (algorithm === 'insertion') sorted = insertionSort(numbers);
-    else if (algorithm === 'merge') sorted = optimalMergeSort(numbers);
+    const end = performance.now();
     
     setResult(sorted);
+    setSortTime(end - start);
   };
 
   return (
@@ -73,19 +78,20 @@ const App: React.FC = () => {
           <input type="radio" value="quick" checked={algorithm === 'quick'} onChange={(e) => setAlgorithm(e.target.value)} />
           {' '}Quick Sort
         </label>
-        <label style={{ marginRight: 10 }}>
+        <label>
           <input type="radio" value="insertion" checked={algorithm === 'insertion'} onChange={(e) => setAlgorithm(e.target.value)} />
           {' '}Insertion Sort
-        </label>
-        <label>
-          <input type="radio" value="merge" checked={algorithm === 'merge'} onChange={(e) => setAlgorithm(e.target.value)} />
-          {' '}Merge Sort
         </label>
       </div>
       <button onClick={handleSort} style={{ padding: '8px 16px' }}>Sort</button>
       {result.length > 0 && (
         <div style={{ marginTop: 20, fontSize: 18 }}>
           <strong>Sorted:</strong> {result.join(', ')}
+          {sortTime !== null && (
+            <div style={{ marginTop: 10, fontSize: 14, color: '#666' }}>
+              Time: {sortTime.toFixed(2)}ms
+            </div>
+          )}
         </div>
       )}
     </div>
