@@ -47,6 +47,7 @@ const App: React.FC = () => {
     if (algorithm === 'bubble') sorted = bubbleSort(numbers);
     else if (algorithm === 'quick') sorted = quickSort(numbers);
     else if (algorithm === 'insertion') sorted = insertionSort(numbers);
+    else if (algorithm === 'merge') sorted = mergeSort(numbers);
     
     setResult(sorted);
   };
@@ -72,9 +73,13 @@ const App: React.FC = () => {
           <input type="radio" value="quick" checked={algorithm === 'quick'} onChange={(e) => setAlgorithm(e.target.value)} />
           {' '}Quick Sort
         </label>
-        <label>
+        <label style={{ marginRight: 10 }}>
           <input type="radio" value="insertion" checked={algorithm === 'insertion'} onChange={(e) => setAlgorithm(e.target.value)} />
           {' '}Insertion Sort
+        </label>
+        <label>
+          <input type="radio" value="merge" checked={algorithm === 'merge'} onChange={(e) => setAlgorithm(e.target.value)} />
+          {' '}Merge Sort
         </label>
       </div>
       <button onClick={handleSort} style={{ padding: '8px 16px' }}>Sort</button>
