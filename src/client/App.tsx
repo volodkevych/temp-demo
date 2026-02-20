@@ -47,7 +47,7 @@ const App: React.FC = () => {
     if (algorithm === 'bubble') sorted = bubbleSort(numbers);
     else if (algorithm === 'quick') sorted = quickSort(numbers);
     else if (algorithm === 'insertion') sorted = insertionSort(numbers);
-    else if (algorithm === 'merge') sorted = mergeSort(numbers);
+    else if (algorithm === 'merge') sorted = optimalMergeSort(numbers);
     
     setResult(sorted);
   };
